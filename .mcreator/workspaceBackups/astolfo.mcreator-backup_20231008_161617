@@ -1,0 +1,287 @@
+{
+  "mod_elements": [
+    {
+      "name": "AstolfoCasual",
+      "type": "livingentity",
+      "sortid": 2,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "astolfo_casual",
+      "metadata": {
+        "files": [
+          "src/main/java/me/programmerastolfo/astolfo/client/renderer/AstolfoCasualRenderer.java",
+          "src/main/resources/data/astolfo/forge/biome_modifier/astolfo_casual_biome_modifier.json",
+          "src/main/java/me/programmerastolfo/astolfo/entity/AstolfoCasualEntity.java",
+          "src/main/resources/assets/astolfo/models/item/astolfo_casual_spawn_egg.json"
+        ]
+      }
+    },
+    {
+      "name": "AstolfoSchoolgirl",
+      "type": "livingentity",
+      "sortid": 1,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "astolfo_schoolgirl",
+      "metadata": {
+        "files": [
+          "src/main/java/me/programmerastolfo/astolfo/client/renderer/AstolfoSchoolgirlRenderer.java",
+          "src/main/resources/data/astolfo/forge/biome_modifier/astolfo_schoolgirl_biome_modifier.json",
+          "src/main/resources/assets/astolfo/models/item/astolfo_schoolgirl_spawn_egg.json",
+          "src/main/java/me/programmerastolfo/astolfo/entity/AstolfoSchoolgirlEntity.java"
+        ]
+      }
+    },
+    {
+      "name": "AstolfoArmor",
+      "type": "livingentity",
+      "sortid": 3,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "astolfo_armor",
+      "metadata": {
+        "files": [
+          "src/main/java/me/programmerastolfo/astolfo/entity/AstolfoArmorEntity.java",
+          "src/main/java/me/programmerastolfo/astolfo/client/renderer/AstolfoArmorRenderer.java",
+          "src/main/resources/data/astolfo/forge/biome_modifier/astolfo_armor_biome_modifier.json",
+          "src/main/resources/assets/astolfo/models/item/astolfo_armor_spawn_egg.json"
+        ]
+      }
+    },
+    {
+      "name": "DuplicateAstolfosProc",
+      "type": "procedure",
+      "sortid": 4,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "duplicate_astolfos_proc",
+      "metadata": {
+        "files": [
+          "src/main/java/me/programmerastolfo/astolfo/procedures/DuplicateAstolfosProcProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "arguments",
+            "type": "cmdcontext"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DuplicateAstolfos",
+      "type": "command",
+      "sortid": 5,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "duplicate_astolfos",
+      "metadata": {
+        "files": [
+          "src/main/java/me/programmerastolfo/astolfo/command/DuplicateAstolfosCommand.java"
+        ]
+      }
+    },
+    {
+      "name": "Felix",
+      "type": "livingentity",
+      "sortid": 6,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "felix",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/astolfo/models/item/felix_spawn_egg.json",
+          "src/main/resources/data/astolfo/forge/biome_modifier/felix_biome_modifier.json",
+          "src/main/java/me/programmerastolfo/astolfo/entity/FelixEntity.java",
+          "src/main/java/me/programmerastolfo/astolfo/client/renderer/FelixRenderer.java"
+        ]
+      }
+    },
+    {
+      "name": "DespawnProc",
+      "type": "procedure",
+      "sortid": 7,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "despawn_proc",
+      "metadata": {
+        "files": [
+          "src/main/java/me/programmerastolfo/astolfo/procedures/DespawnProcProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "arguments",
+            "type": "cmdcontext"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Despawn",
+      "type": "command",
+      "sortid": 8,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "despawn",
+      "metadata": {
+        "files": [
+          "src/main/java/me/programmerastolfo/astolfo/command/DespawnCommand.java"
+        ]
+      }
+    },
+    {
+      "name": "MonsterWhitePlayerFinishesUsingItem",
+      "type": "procedure",
+      "sortid": 9,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "monster_white_player_finishes_using_item",
+      "metadata": {
+        "files": [
+          "src/main/java/me/programmerastolfo/astolfo/procedures/MonsterWhitePlayerFinishesUsingItemProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MonsterWhite",
+      "type": "item",
+      "sortid": 10,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "monster_white",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/astolfo/models/item/monster_white.json",
+          "src/main/java/me/programmerastolfo/astolfo/item/MonsterWhiteItem.java"
+        ]
+      }
+    },
+    {
+      "name": "AstolfoItem",
+      "type": "item",
+      "sortid": 11,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "astolfo_item",
+      "metadata": {
+        "files": [
+          "src/main/java/me/programmerastolfo/astolfo/item/AstolfoItemItem.java",
+          "src/main/resources/assets/astolfo/models/item/astolfo_item.json"
+        ]
+      }
+    },
+    {
+      "name": "AstolfoTab",
+      "type": "tab",
+      "sortid": 12,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "astolfo_tab",
+      "metadata": {
+        "files": []
+      }
+    },
+    {
+      "name": "AstolfoBiome",
+      "type": "biome",
+      "sortid": 13,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "astolfo_biome",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/astolfo/worldgen/biome/astolfo_biome.json",
+          "src/main/resources/data/astolfo/worldgen/configured_feature/astolfo_biome_tree.json",
+          "src/main/resources/data/astolfo/worldgen/placed_feature/astolfo_biome_tree.json"
+        ]
+      }
+    },
+    {
+      "name": "AstolfoAttracotr",
+      "type": "item",
+      "sortid": 14,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "astolfo_attracotr",
+      "metadata": {
+        "files": [
+          "src/main/java/me/programmerastolfo/astolfo/item/AstolfoAttracotrItem.java",
+          "src/main/resources/assets/astolfo/models/item/astolfo_attracotr.json"
+        ]
+      }
+    }
+  ],
+  "variable_elements": [],
+  "sound_elements": [
+    {
+      "name": "astolfo_yahoo",
+      "files": [
+        "astolfo-yahoo"
+      ],
+      "category": "ambient",
+      "subtitle": "Yahoo!"
+    }
+  ],
+  "language_map": {
+    "en_us": {
+      "subtitles.astolfo_yahoo": "Yahoo!",
+      "item.astolfo.astolfo_armor_spawn_egg": "Astolfo Armor Spawn Egg",
+      "item.astolfo.felix_spawn_egg": "Felix Spawn Egg",
+      "item.astolfo.astolfo_casual_spawn_egg": "Astolfo Casual Spawn Egg",
+      "entity.astolfo.felix": "Felix",
+      "entity.astolfo.astolfo_casual": "Astolfo Casual",
+      "item.astolfo.astolfo_attracotr": "[Creative]Astolfo Attractor",
+      "entity.astolfo.astolfo_schoolgirl": "Astolfo Schoolgirl",
+      "item.astolfo.astolfo_item": "me.programmerastolfo.astolfo.items.AstolfoItem",
+      "entity.astolfo.astolfo_armor": "Astolfo Armor",
+      "subtitles.fate_apocrypha": "",
+      "item_group.astolfo.astolfo_tab": "Astolfo Mod",
+      "item.astolfo.astolfo_schoolgirl_spawn_egg": "Astolfo Schoolgirl Spawn Egg",
+      "item.astolfo.monster_white": "Monster Energy White",
+      "biome.astolfo.astolfo_biome": "Astolfo Biome"
+    }
+  },
+  "foldersRoot": {
+    "name": "~",
+    "children": []
+  },
+  "workspaceSettings": {
+    "modid": "astolfo",
+    "modName": "astolfo",
+    "version": "1.0.0",
+    "author": "astolfo, MCreator",
+    "websiteURL": "https://mcreator.net",
+    "license": "Academic Free License v3.0",
+    "disableForgeVersionCheck": true,
+    "serverSideOnly": false,
+    "requiredMods": [],
+    "dependencies": [],
+    "dependants": [],
+    "mcreatorDependencies": [],
+    "currentGenerator": "forge-1.20.1",
+    "modElementsPackage": "me.programmerastolfo.astolfo",
+    "lockBaseModFiles": false
+  },
+  "mcreatorVersion": 202300336712
+}

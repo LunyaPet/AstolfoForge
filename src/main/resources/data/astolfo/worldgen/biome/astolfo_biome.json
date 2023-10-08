@@ -1,0 +1,69 @@
+{
+  "has_precipitation": true,
+  "temperature": 0.5,
+  "downfall": 0.5,
+  "effects": {
+    "particle": {
+      "options": {
+        "type": "heart"
+      },
+      "probability": 0.001
+    },
+    "foliage_color": -26113,
+    "grass_color": -26113,
+    "sky_color": -26113,
+    "fog_color": -26113,
+    "water_color": -26113,
+    "water_fog_color": -26113
+  },
+  "spawners": {
+    "monster": [],
+    "creature": [
+      {
+        "type": "astolfo:astolfo_armor",
+        "weight": 20,
+        "minCount": 99,
+        "maxCount": 99
+      },
+      {
+        "type": "astolfo:astolfo_casual",
+        "weight": 20,
+        "minCount": 99,
+        "maxCount": 99
+      },
+      {
+        "type": "astolfo:astolfo_schoolgirl",
+        "weight": 20,
+        "minCount": 99,
+        "maxCount": 99
+      }
+    ],
+    "ambient": [],
+    "axolotls": [],
+    "underground_water_creature": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": []
+  },
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "astolfo:astolfo_biome_tree",
+      "minecraft:forest_flowers",
+      "minecraft:patch_grass_forest",
+      "minecraft:patch_sugar_cane",
+      "minecraft:patch_pumpkin"
+    ],
+    []
+  ]
+}
