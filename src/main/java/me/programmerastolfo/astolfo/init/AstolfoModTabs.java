@@ -23,22 +23,28 @@ public class AstolfoModTabs {
 	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, AstolfoMod.MODID);
 	public static final RegistryObject<CreativeModeTab> ASTOLFO_TAB = REGISTRY.register("astolfo_tab",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.astolfo.astolfo_tab")).icon(() -> new ItemStack(AstolfoModItems.ASTOLFO_ITEM.get())).displayItems((parameters, tabData) -> {
-				tabData.accept(AstolfoModItems.ASTOLFO_SCHOOLGIRL_SPAWN_EGG.get());
 				tabData.accept(AstolfoModItems.ASTOLFO_CASUAL_SPAWN_EGG.get());
+				tabData.accept(AstolfoModItems.ASTOLFO_SCHOOLGIRL_SPAWN_EGG.get());
 				tabData.accept(AstolfoModItems.ASTOLFO_ARMOR_SPAWN_EGG.get());
 				tabData.accept(AstolfoModItems.FELIX_SPAWN_EGG.get());
 				tabData.accept(AstolfoModItems.MONSTER_WHITE.get());
 				tabData.accept(AstolfoModItems.ASTOLFO_ATTRACOTR.get());
 				tabData.accept(AstolfoModItems.ASTOLFO_REPELLENT_SPAWN_EGG.get());
+				tabData.accept(AstolfoModItems.HIDERI_KANZAKI_SPAWN_EGG.get());
+				tabData.accept(AstolfoModItems.VENTI_SPAWN_EGG.get());
+				tabData.accept(AstolfoModItems.RIMURU_SPAWN_EGG.get());
+				tabData.accept(AstolfoModItems.NAGISA_SHIOTA_SPAWN_EGG.get());
+				tabData.accept(AstolfoModItems.SIEG_SPAWN_EGG.get());
+				tabData.accept(AstolfoModBlocks.ASTOLFO_FLOWER.get().asItem());
 			})
 
 					.build());
 
 	@SubscribeEvent
 	public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData) {
-
 		if (tabData.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
 			tabData.accept(AstolfoModItems.BOYKISSER_SPAWN_EGG.get());
+			tabData.accept(AstolfoModItems.BRIDGET_SPAWN_EGG.get());
 		}
 	}
 }

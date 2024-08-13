@@ -1,5 +1,5 @@
 {
-  "_fv": 47,
+  "_fv": 66,
   "_type": "item",
   "definition": {
     "renderType": 0,
@@ -9,9 +9,11 @@
     "states": [],
     "name": "Monster Energy White",
     "rarity": "COMMON",
-    "creativeTab": {
-      "value": "CUSTOM:AstolfoTab"
-    },
+    "creativeTabs": [
+      {
+        "value": "CUSTOM:AstolfoTab"
+      }
+    ],
     "stackSize": 64,
     "enchantability": 0,
     "useDuration": 32,
@@ -26,14 +28,18 @@
     "damageOnCrafting": false,
     "enableMeleeDamage": false,
     "damageVsEntity": 0.0,
-    "specialInfo": [],
-    "hasGlow": false,
+    "specialInformation": {
+      "fixedValue": []
+    },
     "guiBoundTo": "<NONE>",
     "inventorySize": 9,
     "inventoryStackSize": 64,
     "onFinishUsingItem": {
       "name": "MonsterWhitePlayerFinishesUsingItem"
     },
+    "enableRanged": false,
+    "shootConstantly": false,
+    "rangedItemChargesPower": false,
     "isFood": true,
     "nutritionalValue": 0,
     "saturation": 0.0,

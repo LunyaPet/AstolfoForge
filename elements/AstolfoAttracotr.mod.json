@@ -1,5 +1,5 @@
 {
-  "_fv": 47,
+  "_fv": 66,
   "_type": "item",
   "definition": {
     "renderType": 0,
@@ -9,9 +9,11 @@
     "states": [],
     "name": "[Creative]Astolfo Attractor",
     "rarity": "EPIC",
-    "creativeTab": {
-      "value": "CUSTOM:AstolfoTab"
-    },
+    "creativeTabs": [
+      {
+        "value": "CUSTOM:AstolfoTab"
+      }
+    ],
     "stackSize": 64,
     "enchantability": 0,
     "useDuration": 0,
@@ -26,11 +28,15 @@
     "damageOnCrafting": false,
     "enableMeleeDamage": false,
     "damageVsEntity": 0.0,
-    "specialInfo": [],
-    "hasGlow": false,
+    "specialInformation": {
+      "fixedValue": []
+    },
     "guiBoundTo": "<NONE>",
     "inventorySize": 9,
     "inventoryStackSize": 64,
+    "enableRanged": false,
+    "shootConstantly": false,
+    "rangedItemChargesPower": false,
     "isFood": false,
     "nutritionalValue": 4,
     "saturation": 0.3,

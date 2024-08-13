@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "astolfo:astolfo_biome",
+  "features": "astolfo:astolfo_flower",
+  "step": "vegetal_decoration"
+}

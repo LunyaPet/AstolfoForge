@@ -1,5 +1,5 @@
 {
-  "_fv": 47,
+  "_fv": 66,
   "_type": "biome",
   "definition": {
     "name": "Astolfo Biome",
@@ -75,7 +75,7 @@
       "min": -0.9,
       "max": 0.9
     },
-    "treesPerChunk": 1,
+    "treesPerChunk": 2,
     "vanillaTreeType": "Default",
     "treeType": 0,
     "minHeight": 7,

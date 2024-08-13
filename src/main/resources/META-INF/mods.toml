@@ -6,17 +6,22 @@ license="Academic Free License v3.0"
 modId="astolfo"
 version="1.0.0"
 displayName="astolfo"
-credits="Created using mod maker MCreator - https://mcreator.net/about"
 displayURL="https://mcreator.net"
+credits="Created using mod maker MCreator - https://mcreator.net/about"
 authors="astolfo, MCreator"
+
+# Start of user code block mod configuration
+# End of user code block mod configuration
 
 [[dependencies.astolfo]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.20.1]"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 
 
 
 
+# Start of user code block dependencies configuration
+# End of user code block dependencies configuration
