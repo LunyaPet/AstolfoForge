@@ -1,0 +1,11 @@
+{
+  "astolfo_yahoo": {
+    "subtitle": "subtitles.astolfo_yahoo",
+    "sounds": [
+      {
+        "name": "astolfoforge:astolfo-yahoo",
+        "stream": false
+      }
+    ]
+  }
+}

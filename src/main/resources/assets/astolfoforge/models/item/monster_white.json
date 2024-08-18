@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "astolfoforge:item/monster-ultra-zero-white-05l_l-removebg-preview"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "astolfo:block/astolfo_emoji",
-    "particle": "astolfo:block/astolfo_emoji"
-  },
-  "render_type": "cutout"
-}
