@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="GNU General Public License version 3 (GPLv3)"
+
+[[mods]]
+modId="astolfoforge"
+version="1.2.0"
+displayName="astolfoforge"
+displayURL="https://akatsuki2555.is-a.dev"
+credits="Created using mod maker MCreator - https://mcreator.net/about"
+authors="akatsuki2555"
+description="Astolfo Forge adds a bunch of femboys into Minecraft."
+
+# Start of user code block mod configuration
+# End of user code block mod configuration
+
+[[dependencies.astolfoforge]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.4.123,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.astolfoforge]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.4]"
+    ordering="AFTER"
+    side="BOTH"
+
+
+
+
+# Start of user code block dependencies configuration
+# End of user code block dependencies configuration

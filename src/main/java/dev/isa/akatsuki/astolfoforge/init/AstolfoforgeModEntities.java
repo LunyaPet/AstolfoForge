@@ -4,17 +4,19 @@
  */
 package dev.isa.akatsuki.astolfoforge.init;
 
-import net.minecraftforge.registries.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.bus.api.SubscribeEvent;
 
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
 
 import dev.isa.akatsuki.astolfoforge.entity.VentiEntity;
 import dev.isa.akatsuki.astolfoforge.entity.SiegEntity;
@@ -30,60 +32,60 @@ import dev.isa.akatsuki.astolfoforge.entity.AstolfoCasualEntity;
 import dev.isa.akatsuki.astolfoforge.entity.AstolfoArmorEntity;
 import dev.isa.akatsuki.astolfoforge.AstolfoforgeMod;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class AstolfoforgeModEntities {
-	public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, AstolfoforgeMod.MODID);
-	public static final RegistryObject<EntityType<AstolfoCasualEntity>> ASTOLFO_CASUAL = register("astolfo_casual", EntityType.Builder.<AstolfoCasualEntity>of(AstolfoCasualEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-			.setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(AstolfoCasualEntity::new).fireImmune().sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<AstolfoSchoolgirlEntity>> ASTOLFO_SCHOOLGIRL = register("astolfo_schoolgirl", EntityType.Builder.<AstolfoSchoolgirlEntity>of(AstolfoSchoolgirlEntity::new, MobCategory.CREATURE)
-			.setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(AstolfoSchoolgirlEntity::new).fireImmune().sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<AstolfoArmorEntity>> ASTOLFO_ARMOR = register("astolfo_armor", EntityType.Builder.<AstolfoArmorEntity>of(AstolfoArmorEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-			.setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(AstolfoArmorEntity::new).fireImmune().sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<FelixEntity>> FELIX = register("felix",
-			EntityType.Builder.<FelixEntity>of(FelixEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(FelixEntity::new)
+	public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE, AstolfoforgeMod.MODID);
+	public static final DeferredHolder<EntityType<?>, EntityType<AstolfoCasualEntity>> ASTOLFO_CASUAL = register("astolfo_casual",
+			EntityType.Builder.<AstolfoCasualEntity>of(AstolfoCasualEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).fireImmune().sized(0.6f, 1.8f));
+	public static final DeferredHolder<EntityType<?>, EntityType<AstolfoSchoolgirlEntity>> ASTOLFO_SCHOOLGIRL = register("astolfo_schoolgirl",
+			EntityType.Builder.<AstolfoSchoolgirlEntity>of(AstolfoSchoolgirlEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).fireImmune().sized(0.6f, 1.8f));
+	public static final DeferredHolder<EntityType<?>, EntityType<AstolfoArmorEntity>> ASTOLFO_ARMOR = register("astolfo_armor",
+			EntityType.Builder.<AstolfoArmorEntity>of(AstolfoArmorEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).fireImmune().sized(0.6f, 1.8f));
+	public static final DeferredHolder<EntityType<?>, EntityType<FelixEntity>> FELIX = register("felix",
+			EntityType.Builder.<FelixEntity>of(FelixEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<AstolfoRepellentEntity>> ASTOLFO_REPELLENT = register("astolfo_repellent",
-			EntityType.Builder.<AstolfoRepellentEntity>of(AstolfoRepellentEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(AstolfoRepellentEntity::new)
+	public static final DeferredHolder<EntityType<?>, EntityType<AstolfoRepellentEntity>> ASTOLFO_REPELLENT = register("astolfo_repellent",
+			EntityType.Builder.<AstolfoRepellentEntity>of(AstolfoRepellentEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<BoykisserEntity>> BOYKISSER = register("boykisser",
-			EntityType.Builder.<BoykisserEntity>of(BoykisserEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BoykisserEntity::new)
+	public static final DeferredHolder<EntityType<?>, EntityType<BoykisserEntity>> BOYKISSER = register("boykisser",
+			EntityType.Builder.<BoykisserEntity>of(BoykisserEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<HideriKanzakiEntity>> HIDERI_KANZAKI = register("hideri_kanzaki", EntityType.Builder.<HideriKanzakiEntity>of(HideriKanzakiEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-			.setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HideriKanzakiEntity::new).fireImmune().sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<VentiEntity>> VENTI = register("venti",
-			EntityType.Builder.<VentiEntity>of(VentiEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(VentiEntity::new).fireImmune().sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<RimuruEntity>> RIMURU = register("rimuru",
-			EntityType.Builder.<RimuruEntity>of(RimuruEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(RimuruEntity::new).fireImmune().sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<NagisaShiotaEntity>> NAGISA_SHIOTA = register("nagisa_shiota", EntityType.Builder.<NagisaShiotaEntity>of(NagisaShiotaEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-			.setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NagisaShiotaEntity::new).fireImmune().sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<SiegEntity>> SIEG = register("sieg",
-			EntityType.Builder.<SiegEntity>of(SiegEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SiegEntity::new).fireImmune().sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<BridgetEntity>> BRIDGET = register("bridget",
-			EntityType.Builder.<BridgetEntity>of(BridgetEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BridgetEntity::new).fireImmune().sized(0.6f, 1.8f));
+	public static final DeferredHolder<EntityType<?>, EntityType<HideriKanzakiEntity>> HIDERI_KANZAKI = register("hideri_kanzaki",
+			EntityType.Builder.<HideriKanzakiEntity>of(HideriKanzakiEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).fireImmune().sized(0.6f, 1.8f));
+	public static final DeferredHolder<EntityType<?>, EntityType<VentiEntity>> VENTI = register("venti",
+			EntityType.Builder.<VentiEntity>of(VentiEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).fireImmune().sized(0.6f, 1.8f));
+	public static final DeferredHolder<EntityType<?>, EntityType<RimuruEntity>> RIMURU = register("rimuru",
+			EntityType.Builder.<RimuruEntity>of(RimuruEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).fireImmune().sized(0.6f, 1.8f));
+	public static final DeferredHolder<EntityType<?>, EntityType<NagisaShiotaEntity>> NAGISA_SHIOTA = register("nagisa_shiota",
+			EntityType.Builder.<NagisaShiotaEntity>of(NagisaShiotaEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).fireImmune().sized(0.6f, 1.8f));
+	public static final DeferredHolder<EntityType<?>, EntityType<SiegEntity>> SIEG = register("sieg",
+			EntityType.Builder.<SiegEntity>of(SiegEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).fireImmune().sized(0.6f, 1.8f));
+	public static final DeferredHolder<EntityType<?>, EntityType<BridgetEntity>> BRIDGET = register("bridget",
+			EntityType.Builder.<BridgetEntity>of(BridgetEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).fireImmune().sized(0.6f, 1.8f));
 
-	private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
-		return REGISTRY.register(registryname, () -> (EntityType<T>) entityTypeBuilder.build(registryname));
+	// Start of user code block custom entities
+	// End of user code block custom entities
+	private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
+		return REGISTRY.register(registryname, () -> (EntityType<T>) entityTypeBuilder.build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(AstolfoforgeMod.MODID, registryname))));
 	}
 
 	@SubscribeEvent
-	public static void init(FMLCommonSetupEvent event) {
-		event.enqueueWork(() -> {
-			AstolfoCasualEntity.init();
-			AstolfoSchoolgirlEntity.init();
-			AstolfoArmorEntity.init();
-			FelixEntity.init();
-			AstolfoRepellentEntity.init();
-			BoykisserEntity.init();
-			HideriKanzakiEntity.init();
-			VentiEntity.init();
-			RimuruEntity.init();
-			NagisaShiotaEntity.init();
-			SiegEntity.init();
-			BridgetEntity.init();
-		});
+	public static void init(RegisterSpawnPlacementsEvent event) {
+		AstolfoCasualEntity.init(event);
+		AstolfoSchoolgirlEntity.init(event);
+		AstolfoArmorEntity.init(event);
+		FelixEntity.init(event);
+		AstolfoRepellentEntity.init(event);
+		BoykisserEntity.init(event);
+		HideriKanzakiEntity.init(event);
+		VentiEntity.init(event);
+		RimuruEntity.init(event);
+		NagisaShiotaEntity.init(event);
+		SiegEntity.init(event);
+		BridgetEntity.init(event);
 	}
 
 	@SubscribeEvent

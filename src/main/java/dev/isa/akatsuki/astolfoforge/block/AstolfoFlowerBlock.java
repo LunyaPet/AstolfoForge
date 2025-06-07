@@ -18,13 +18,8 @@ import net.minecraft.core.BlockPos;
 import dev.isa.akatsuki.astolfoforge.procedures.AstolfoFlowerPlantDestroyedByPlayerProcedure;
 
 public class AstolfoFlowerBlock extends FlowerBlock {
-	public AstolfoFlowerBlock() {
-		super(() -> MobEffects.MOVEMENT_SPEED, 100, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).instabreak().noCollission().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY));
-	}
-
-	@Override
-	public int getEffectDuration() {
-		return 100;
+	public AstolfoFlowerBlock(BlockBehaviour.Properties properties) {
+		super(MobEffects.MOVEMENT_SPEED, 100, properties.mapColor(MapColor.PLANT).sound(SoundType.GRASS).instabreak().noCollission().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY));
 	}
 
 	@Override

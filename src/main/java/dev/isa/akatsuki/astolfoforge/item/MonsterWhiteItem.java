@@ -11,8 +11,8 @@ import net.minecraft.world.entity.LivingEntity;
 import dev.isa.akatsuki.astolfoforge.procedures.MonsterWhitePlayerFinishesUsingItemProcedure;
 
 public class MonsterWhiteItem extends Item {
-	public MonsterWhiteItem() {
-		super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(0).saturationMod(0f).build()));
+	public MonsterWhiteItem(Item.Properties properties) {
+		super(properties.rarity(Rarity.COMMON).stacksTo(64).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0f).build()));
 	}
 
 	@Override

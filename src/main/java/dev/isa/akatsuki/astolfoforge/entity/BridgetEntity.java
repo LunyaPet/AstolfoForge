@@ -1,13 +1,13 @@
 
 package dev.isa.akatsuki.astolfoforge.entity;
 
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
+import net.neoforged.neoforge.common.NeoForgeMod;
 
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.entity.player.Player;
@@ -18,9 +18,8 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EntityType;
@@ -32,27 +31,18 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.Packet;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import dev.isa.akatsuki.astolfoforge.init.AstolfoforgeModEntities;
 
 public class BridgetEntity extends PathfinderMob {
-	public BridgetEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(AstolfoforgeModEntities.BRIDGET.get(), world);
-	}
-
 	public BridgetEntity(EntityType<BridgetEntity> type, Level world) {
 		super(type, world);
-		setMaxUpStep(1f);
 		xpReward = 0;
 		setNoAi(false);
-	}
-
-	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
 	@Override
@@ -60,8 +50,8 @@ public class BridgetEntity extends PathfinderMob {
 		super.registerGoals();
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false) {
 			@Override
-			protected double getAttackReachSqr(LivingEntity entity) {
-				return this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth();
+			protected boolean canPerformAttack(LivingEntity entity) {
+				return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth()) && this.mob.getSensing().hasLineOfSight(entity);
 			}
 		});
 		this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
@@ -71,30 +61,25 @@ public class BridgetEntity extends PathfinderMob {
 	}
 
 	@Override
-	public MobType getMobType() {
-		return MobType.UNDEFINED;
-	}
-
-	@Override
-	public double getMyRidingOffset() {
-		return -0.35D;
+	public Vec3 getPassengerRidingPosition(Entity entity) {
+		return super.getPassengerRidingPosition(entity).add(0, -0.35F, 0);
 	}
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.hurt"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("entity.generic.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.death"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("entity.generic.death"));
 	}
 
 	@Override
-	public boolean hurt(DamageSource damagesource, float amount) {
+	public boolean hurtServer(ServerLevel level, DamageSource damagesource, float amount) {
 		if (damagesource.is(DamageTypes.IN_FIRE))
 			return false;
-		if (damagesource.getDirectEntity() instanceof ThrownPotion || damagesource.getDirectEntity() instanceof AreaEffectCloud)
+		if (damagesource.getDirectEntity() instanceof ThrownPotion || damagesource.getDirectEntity() instanceof AreaEffectCloud || damagesource.typeHolder().is(NeoForgeMod.POISON_DAMAGE))
 			return false;
 		if (damagesource.is(DamageTypes.FALL))
 			return false;
@@ -114,11 +99,11 @@ public class BridgetEntity extends PathfinderMob {
 			return false;
 		if (damagesource.is(DamageTypes.WITHER) || damagesource.is(DamageTypes.WITHER_SKULL))
 			return false;
-		return super.hurt(damagesource, amount);
+		return super.hurtServer(level, damagesource, amount);
 	}
 
 	@Override
-	public boolean ignoreExplosion() {
+	public boolean ignoreExplosion(Explosion explosion) {
 		return true;
 	}
 
@@ -130,7 +115,7 @@ public class BridgetEntity extends PathfinderMob {
 	@Override
 	public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
 		ItemStack itemstack = sourceentity.getItemInHand(hand);
-		InteractionResult retval = InteractionResult.sidedSuccess(this.level().isClientSide());
+		InteractionResult retval = InteractionResult.SUCCESS;
 		super.mobInteract(sourceentity, hand);
 		sourceentity.startRiding(this);
 		return retval;
@@ -146,10 +131,10 @@ public class BridgetEntity extends PathfinderMob {
 			this.setRot(this.getYRot(), this.getXRot());
 			this.yBodyRot = entity.getYRot();
 			this.yHeadRot = entity.getYRot();
-			if (entity instanceof LivingEntity passenger) {
+			if (entity instanceof ServerPlayer passenger) {
 				this.setSpeed((float) this.getAttributeValue(Attributes.MOVEMENT_SPEED));
-				float forward = passenger.zza;
-				float strafe = passenger.xxa;
+				float forward = passenger.getLastClientInput().forward() == passenger.getLastClientInput().backward() ? 0 : (passenger.getLastClientInput().forward() ? 1 : -1);
+				float strafe = passenger.getLastClientInput().left() == passenger.getLastClientInput().right() ? 0 : (passenger.getLastClientInput().left() ? 1 : -1);
 				super.travel(new Vec3(strafe, 0, forward));
 			}
 			double d1 = this.getX() - this.xo;
@@ -165,9 +150,9 @@ public class BridgetEntity extends PathfinderMob {
 		super.travel(dir);
 	}
 
-	public static void init() {
-		SpawnPlacements.register(AstolfoforgeModEntities.BRIDGET.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-				(entityType, world, reason, pos, random) -> (world.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && world.getRawBrightness(pos, 0) > 8));
+	public static void init(RegisterSpawnPlacementsEvent event) {
+		event.register(AstolfoforgeModEntities.BRIDGET.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				(entityType, world, reason, pos, random) -> (world.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && world.getRawBrightness(pos, 0) > 8), RegisterSpawnPlacementsEvent.Operation.REPLACE);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -177,6 +162,7 @@ public class BridgetEntity extends PathfinderMob {
 		builder = builder.add(Attributes.ARMOR, 0);
 		builder = builder.add(Attributes.ATTACK_DAMAGE, 3);
 		builder = builder.add(Attributes.FOLLOW_RANGE, 64);
+		builder = builder.add(Attributes.STEP_HEIGHT, 1);
 		return builder;
 	}
 }
